@@ -11,7 +11,8 @@ price_changes <- diff(data$trade)
 #View(price_changes)
 
 nonzero_price_changes <- price_changes[price_changes != 0]
-#View(nonzero_price_changes)
+View(nonzero_price_changes)
+plot(nonzero_price_changes)
 
 acf(nonzero_price_changes)
 
