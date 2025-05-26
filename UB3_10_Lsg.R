@@ -37,7 +37,7 @@ acf(x,pl=FALSE)$acf[3]-1/sqrt(length(x))*sqrt(1+2*(acf(x,pl=FALSE)$acf[2])^2)*qn
 acf(x,pl=FALSE)$acf[3]+1/sqrt(length(x))*sqrt(1+2*(acf(x,pl=FALSE)$acf[2])^2)*qnorm(.995)
 
 # (e) Using the MA(1) model for the time series, determine an asymptotic 99% confidence
-#interval for ?(1), i.e. the autocorrelation at lag 1. You can use Example 1.24. Note,
+#interval for rho(1), i.e. the autocorrelation at lag 1. You can use Example 1.24. Note,
 #however, that we have set s2 = 1 in this example.
 
 acf(x,pl=FALSE)$acf[2]
