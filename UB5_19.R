@@ -28,6 +28,7 @@ lines(anomalyts, col = "red")
 # a)
 yule_walker <- ar(normalts, aic=FALSE, order.max=6, method="yule-walker")
 yw_coeff <- yule_walker[[2]]
+yw_coeff
 
 ols <- ar(normalts, aic=FALSE, order.max=6, method = "ols")
 ols_coeff <- ols[[2]]

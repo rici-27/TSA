@@ -32,6 +32,7 @@ acf(x,pl=FALSE)
 # (d) Using the MA(1) model for the time series, determine an asymptotic 99% confidence
 #interval for ?(2), i.e. the autocorrelation at lag 2. You can use exercise 8.
 
+# acf[3] entspricht lag 2, weil acf[1] = rho(0).
 acf(x,pl=FALSE)$acf[3]
 acf(x,pl=FALSE)$acf[3]-1/sqrt(length(x))*sqrt(1+2*(acf(x,pl=FALSE)$acf[2])^2)*qnorm(.995)
 acf(x,pl=FALSE)$acf[3]+1/sqrt(length(x))*sqrt(1+2*(acf(x,pl=FALSE)$acf[2])^2)*qnorm(.995)

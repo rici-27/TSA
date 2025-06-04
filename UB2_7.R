@@ -1,0 +1,2 @@
+setwd("~/Desktop/Zeitreihenanalyse/TSA")
+
