@@ -13,7 +13,7 @@ plot(grid,B,type="l")
 
 
 logReturns<-function(n,mu,sigma){
-return(mu+sigma*rnorm(n,0,1))
+  return(mu+sigma*rnorm(n,0,1))
 }
 
 obs<-logReturns(2000,-0.85,2) 
@@ -21,17 +21,16 @@ plot(grid[1:n],obs,type="l")
 
 
 sigmaMLE<-function(obs){
-return(1/n*sum((obs-mean(obs))^2))
+  return(1/n*sum((obs-mean(obs))^2))
 }
 
 sigmaUMVU<-function(obs){
-n<-length(obs)
+  n<-length(obs)
 sum(1/(n-1)*(obs-mean(obs))^2)
-
 }
 
 muMLE<-function(obs){
-1/n*sum(obs)
+  1/n*sum(obs)
 }
 
 sigmaMLE(obs);sigmaUMVU(obs);muMLE(obs)

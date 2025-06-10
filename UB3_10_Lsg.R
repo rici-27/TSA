@@ -30,10 +30,10 @@ acf(x,lag.max=15,main="")
 acf(x,pl=FALSE)
 
 # (d) Using the MA(1) model for the time series, determine an asymptotic 99% confidence
-#interval for ?(2), i.e. the autocorrelation at lag 2. You can use exercise 8.
+#interval for rho(2), i.e. the autocorrelation at lag 2. You can use exercise 8.
 
 # acf[3] entspricht lag 2, weil acf[1] = rho(0).
-acf(x,pl=FALSE)$acf[3]
+acf(x,pl=FALSE)$acf[3] 
 acf(x,pl=FALSE)$acf[3]-1/sqrt(length(x))*sqrt(1+2*(acf(x,pl=FALSE)$acf[2])^2)*qnorm(.995)
 acf(x,pl=FALSE)$acf[3]+1/sqrt(length(x))*sqrt(1+2*(acf(x,pl=FALSE)$acf[2])^2)*qnorm(.995)
 
@@ -55,7 +55,7 @@ acf(x,pl=FALSE)$acf[2]+1/sqrt(length(x))*sqrt(1-3*(acf(x,pl=FALSE)$acf[2])^2+4*(
 thetahat<-(1-sqrt(1-4*(acf(x,pl=FALSE)$acf[2])^2))/(2*(acf(x,pl=FALSE)$acf[2])) # Momentestimator
 sigmahat<-acf(x,pl=FALSE,type = c("covariance"))$acf[1]/(1+thetahat^2)
 
-# (g) Determine an asymptotic 99% confidence interval for the mean ? of the time series.
+# (g) Determine an asymptotic 99% confidence interval for the mean mu of the time series.
 
 muhat<-mean(x)
 muhat-1/sqrt(length(x))*sqrt(acf(x,pl=FALSE,type = c("covariance"))$acf[1]+2*acf(x,pl=FALSE,type = c("covariance"))$acf[2])*qnorm(.995)
