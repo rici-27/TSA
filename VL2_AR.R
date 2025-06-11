@@ -3,23 +3,31 @@ n<-1000
 mu<-0
 z<-numeric(n+1)+mu
 sigma<-1
-phi<-0.5
+phi<-0.5 # wir simulieren, also wählen den koeffizienten selbst
 for(j in 1:n){
   z[j+1]<-phi*z[j]+rnorm(1,mean=0,sd=sigma)}
 acf(z,lag.max=12)
-points(0:12,phi^(0:12),col="red",lwd=2,pch=19)
+points(0:12,phi^(0:12),col="red",lwd=2,pch=19) # phi^h ist acf (corr)
+
 #
-acf(z,lag.max=12,type="partial")
+acf(z,lag.max=12,type="partial") # get partial acf
+# at lag 1 pacf and acf are the same
+# all the other acfs are nonsignificant / zero in theory!
 #
 pacf(z,lag.max = 12)
-#
-ar.yw(z, aic = TRUE, order.max = 10)
+# implemented function for yule walker
+ar.yw(z, aic = TRUE, order.max = 10) # wählt ordnung selbst, max 10
+# Akaike Information Criterion
+# hier wird Ordnung 2 gewählt, das ist falsch
+# aber phi_2 ist sehr klein immerhin
 ar.yw(z, aic = FALSE, order.max = 1)
 acf(z,lag.max = 12)$acf[2]
 pacf(z,lag.max = 12)$acf[1]
 ar.yw(z, aic = FALSE, order.max = 2)
 ############################
 #Monte Carlo simulation AR(1)
+# yule walker says for order 1:
+# we estimate phi_1 with the acf at lag 1
 n<-1000
 N<-1000
 Phihat1<-numeric(N);Phihat2<-numeric(N);Phihat3<-numeric(N);Phihat<-array(0,dim=c(10,N))
@@ -27,6 +35,7 @@ for(k in 1:N){
   z<-numeric(n+1)
   for(j in 1:n){
     z[j+1]<-phi*z[j]+rnorm(1,mean=0,sd=sigma)}
+  # wir betrachten phi_1 für verschiedene ordnungen
   Phihat1[k]<-ar.yw(z, aic = FALSE, order.max = 1)$ar
   Phihat2[k]<-ar.yw(z, aic = FALSE, order.max = 2)$ar[1]
   Phihat3[k]<-ar.yw(z, aic = FALSE, order.max = 10)$ar[1]
@@ -35,12 +44,15 @@ for(k in 1:N){
 mean(Phihat1);sd(Phihat1)
 mean(Phihat2);sd(Phihat2)
 mean(Phihat3);sd(Phihat3)
+# standard abweichung für größere modelle ist größer
 #
 par(mfrow=c(1,3))
 hist(Phihat1,breaks=20,col="gray",freq=T)
 hist(Phihat2,breaks=20,col="gray",freq=T)
 hist(Phihat3,breaks=20,col="gray",freq=T)
 #
+# wir schauen uns KI an für phi bei ordnung 10
+# man sieht alle koeff außer 1 sind nahe bei Null
 dev.off()
 plot(rowMeans(Phihat),col="blue",type="p",ylim=c(-.1,.6))
 points(rowMeans(Phihat)+1.64*apply(Phihat, 1, sd, na.rm=TRUE),col="red")
