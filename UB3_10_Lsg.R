@@ -49,7 +49,7 @@ acf(x,pl=FALSE)$acf[2]+1/sqrt(length(x))*sqrt(1-3*(acf(x,pl=FALSE)$acf[2])^2+4*(
 #acf(2*x,pl=FALSE)$acf[2]-1/sqrt(length(x))*sqrt(1-3*(acf(2*x,pl=FALSE)$acf[2])^2+4*(acf(2*x,pl=FALSE)$acf[2])^4)*qnorm(.995)
 #acf(2*x,pl=FALSE)$acf[2]+1/sqrt(length(x))*sqrt(1-3*(acf(2*x,pl=FALSE)$acf[2])^2+4*(acf(2*x,pl=FALSE)$acf[2])^4)*qnorm(.995)
 
-# (f) How can we estimate the parameter ?? Determine a point estimate of ?. Determine,
+# (f) How can we estimate the parameter theta Determine a point estimate of ?. Determine,
 #moreover, a point estimate of s2.
 
 thetahat<-(1-sqrt(1-4*(acf(x,pl=FALSE)$acf[2])^2))/(2*(acf(x,pl=FALSE)$acf[2])) # Momentestimator
