@@ -60,4 +60,5 @@ sigmahat<-acf(x,pl=FALSE,type = c("covariance"))$acf[1]/(1+thetahat^2)
 muhat<-mean(x)
 muhat-1/sqrt(length(x))*sqrt(acf(x,pl=FALSE,type = c("covariance"))$acf[1]+2*acf(x,pl=FALSE,type = c("covariance"))$acf[2])*qnorm(.995)
 muhat+1/sqrt(length(x))*sqrt(acf(x,pl=FALSE,type = c("covariance"))$acf[1]+2*acf(x,pl=FALSE,type = c("covariance"))$acf[2])*qnorm(.995)
+# hier nehmen wir iid noise an! dann satz 1.15 und 1.13b) für die varianz (sym verwenden!)
 
